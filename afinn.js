@@ -31,9 +31,15 @@ var afinn = JSON.parse(json);
         score += item;
     }
 
+    var verdict = score == 0 ? "NEUTRAL" : score < 0 ? "NEGATIVE" : "POSITIVE";
+
     // Handle optional async interface
     var result = {
-        verdict:        score == 0 ? "NEUTRAL" : (score < 0 ? "NEGATIVE" : "POSITIVE"),
+    var verdict = score == 0 ? "NEUTRAL" : score < 0 ? "NEGATIVE" : "POSITIVE";
+
+    // Handle optional async interface
+    var result = {
+        verdict:        verdict,
         score:          score,
         comparative:    score / tokens.length,
         positive:       positive,
