@@ -35,10 +35,6 @@ var afinn = JSON.parse(json);
 
     // Handle optional async interface
     var result = {
-    var verdict = score == 0 ? "NEUTRAL" : score < 0 ? "NEGATIVE" : "POSITIVE";
-
-    // Handle optional async interface
-    var result = {
         verdict:        verdict,
         score:          score,
         comparative:    score / tokens.length,
