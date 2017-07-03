@@ -1,6 +1,6 @@
 
 function tokenize(input) {
-  return input.replace(/\n/g, ' ').trim().replace('/ {2,}/', ' ').toLowerCase().split(' ');
+  return $.map(input.replace('/ {2,}/', ' ').toLowerCase().split(' '), $.trim);
 }
 
 function sentiment(phrase) {
