@@ -27,7 +27,6 @@ function sentiment(phrase) {
 
   var verdict = score == 0 ? "NEUTRAL" : score < 0 ? "NEGATIVE" : "POSITIVE";
 
-  // Handle optional async interface
   var result = {
     verdict: verdict,
     score: score,
