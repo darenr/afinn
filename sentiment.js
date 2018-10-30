@@ -3,7 +3,6 @@ function tokenize(input) {
   return $.map(input.replace('.', '')
     .replace('/ {2,}/', ' ')
     .toLowerCase()
-    .replace(/\w+['’]t\s+(.*?)/g, 'negate_$1')
     .replace(/\w+['’]t\s+(a\s+)?(.*?)/g, 'negate_$2')
     .split(' '), $.trim);
 }
