@@ -1,7 +1,11 @@
-
 function tokenize(input) {
-    // convert negative contractions into negate_<word>
-  return $.map(input.replace('/ {2,}/', ' ').toLowerCase().replace(/\w+[']t\s+(.*?)/g, 'negate_$1').split(' '), $.trim);
+  // convert negative contractions into negate_<word>
+  return $.map(input.replace('.', '')
+    .replace('/ {2,}/', ' ')
+    .toLowerCase()
+    .replace(/\w+['’]t\s+(.*?)/g, 'negate_$1')
+    .replace(/\w+['’]t\s+(a\s+)?(.*?)/g, 'negate_$2')
+    .split(' '), $.trim);
 }
 
 function sentiment(phrase) {
@@ -17,14 +21,15 @@ function sentiment(phrase) {
   while (len--) {
     var obj = tokens[len];
     var negate = obj.startsWith('negate_');
-    if(negate) obj = obj.slice("negate_".length);
+
+    if (negate) obj = obj.slice("negate_".length);
 
     if (!afinn.hasOwnProperty(obj)) continue;
 
     var item = afinn[obj];
 
     words.push(obj);
-    if(negate) item = item * -1.0;
+    if (negate) item = item * -1.0;
     if (item > 0) positive.push(obj);
     if (item < 0) negative.push(obj);
 
