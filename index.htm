@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
   <style>
     body {
@@ -21,7 +21,7 @@
       margin-bottom: 20px;
     }
 
-    .theme-showcase > p > .btn {
+    .theme-showcase>p>.btn {
       margin: 5px 0;
     }
 
@@ -64,7 +64,7 @@
 
   <!-- Fixed navbar -->
   <div class="container">
-  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
@@ -101,43 +101,46 @@
 
       <h3>Enter some text below for real-time sentiment analysis:</h3>
       <textarea id="txt"></textarea>
-      <h3>Result:</h3>
+      <h3>Verdict:</h3>
       <pre id="result"></pre>
     </div>
   </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <!-- English words -->
   <script src="afinn_en.js"></script>
   <!-- Danish words -->
   <script src="afinn_da.js"></script>
+  <!-- Emoticons -->
+  <script src="afinn_emoticon.js"></script>
   <!-- Algorithm -->
   <script src="sentiment.js"></script>
 
   <script>
-
-    var afinn = afinn_en;
+    var afinn = $.extend(afinn_en, afinn_emoticon);
 
     function setLanguage(languageName) {
       $("#result").empty();
       $("#languageSelector").text(languageName);
-      switch(languageName) {
-        case 'English': {
-          afinn = afinn_en; 
-          break;
-        }
-        case 'Danish': {
-          afinn = afinn_da; 
-          break;
-        }
+      switch (languageName) {
+        case 'English':
+          {
+            afinn = $.extend(afinn_en, afinn_emoticon);
+            break;
+          }
+        case 'Danish':
+          {
+            afinn = $.extend(afinn_da, afinn_emoticon);
+            break;
+          }
       }
     }
 
     $(document).ready(function() {
 
-      $(".languageSelector").on( "click", function(e) {
+      $(".languageSelector").on("click", function(e) {
         e.preventDefault();
         setLanguage($(this).text());
       });
