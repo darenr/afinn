@@ -6,6 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AFINN Sentiment Analysis" />
+  <meta property="og:description" content="Javascript sentiment analysis using a lexicon of words and their sentiment valence called AFINN" />
+  <meta property="og:url" content="http://darenr.github.io/afinn/" />
+  <meta property="og:image" content="http://darenr.github.io/afinn/afinn-app-screenshot.png" />
+  <meta property="og:site_name" content="github - daren race - afinn" />
+  <meta property="article:tag" content="sentiment analysis" />
+  <meta property="article:tag" content="daren race" />
+  <meta property="article:tag" content="machine learning" />
+  <meta property="article:section" content="Articles" />
+  <meta property="article:published_time" content="2018-10-02T10:00:36+00:00" />
+  <meta property="article:modified_time" content="2018-10-20T14:49:37+00:00" />
+  <meta property="og:updated_time" content="2018-11-02T14:49:37+00:00" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:description" content="Javascript sentiment analysis using a lexicon of words and their sentiment valence called AFINN" />
+  <meta name="twitter:title" content="AFINN Sentiment Analysis" />
+  <meta name="twitter:image" content="http://darenr.github.io/afinn/afinn-app-screenshot.png" />
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
@@ -40,7 +59,7 @@
     }
 
     .jumbotron {
-      background-color: #A51E5B;
+      background-color: #261b20;
     }
 
     .jumbotron h3 {
@@ -48,11 +67,19 @@
     }
 
     pre {
-      background-color: #f3f712;
+      background-color: #d7d7d7;
     }
 
     .jumbotron p {
       color: #bbb;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 80px;
+      text-align: center;
     }
 
   </style>
@@ -86,7 +113,7 @@
   <div class="container theme-showcase" role="main">
 
     <div class="jumbotron">
-      <p>AFINN is a list of words rated for valence with an integer between minus five (negative) and plus five (positive). This implementation uses AFINN-en-165</p>
+      <p>AFINN is a list of words rated for valence with an integer between minus five (negative) and plus five (positive). This implementation uses <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN-en-165</a></p>
 
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="languageSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -99,12 +126,19 @@
         </ul>
       </div>
 
-      <h3>Enter some text below for real-time sentiment analysis:</h3>
+      <h3>Enter some text below for real-time (in-browser) sentiment analysis:</h3>
       <textarea id="txt"></textarea>
       <h3>Verdict:</h3>
       <pre id="result"></pre>
     </div>
   </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">Contribute: <a href="https://github.com/darenr/afinn">github</a>
+      </p>
+    </div>
+  </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
