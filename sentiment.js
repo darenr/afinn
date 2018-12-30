@@ -42,8 +42,8 @@ function sentiment(phrase) {
     verdict: verdict,
     score: score,
     comparative: score / tokens.length,
-    positive: positive,
-    negative: negative
+    positive: [...new Set(positive)],
+    negative: [...new Set(negative)]
   };
 
   return result;
