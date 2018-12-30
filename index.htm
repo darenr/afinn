@@ -48,6 +48,10 @@
       width: auto;
     }
 
+    .tooltip-inner {
+        text-align: left;
+    }
+
     textarea {
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -58,21 +62,11 @@
       padding: 10px;
     }
 
-    .jumbotron {
-      background-color: #261b20;
-    }
-
-    .jumbotron h3 {
-      color: white;
-    }
 
     pre {
-      background-color: #d7d7d7;
+      background-color: white;
     }
 
-    .jumbotron p {
-      color: #bbb;
-    }
 
   </style>
 
@@ -95,7 +89,7 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><a href="http://www2.imm.dtu.dk/pubdb/views/edoc_download.php/6006/pdf/imm6006.pdf" target="_blank">AFINN:  Evaluation of a word list for sentiment analysis in microblogs</a></li>
+          <li><a href="http://www2.imm.dtu.dk/pubdb/views/edoc_download.php/6006/pdf/imm6006.pdf" target="_blank">AFINN: Evaluation of a word list for sentiment analysis in microblogs</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -105,7 +99,9 @@
   <div class="container theme-showcase" role="main">
 
     <div class="jumbotron">
-      <p>AFINN is a list of words rated for valence with an integer between minus five (negative) and plus five (positive). This implementation uses <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN-en-165</a></p>
+      <p>AFINN is a list of words rated for <a href="#" data-toggle="tooltip" title='Valence, as used in psychology, especially in discussing emotions, means the intrinsic attractiveness "good"-ness
+        or averseness "bad"-ness of an event, object, or situation. The term also characterizes and categorizes specific emotions'>valence</a>
+        with an integer between minus five (negative) and plus five (positive). This implementation uses <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN-en-165</a></p>
 
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="languageSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -164,6 +160,10 @@
         setLanguage($(this).text());
       });
 
+      $('[data-toggle="tooltip"]').tooltip({
+        'placement': 'bottom'
+      });
+
       $('#txt').focus();
       $('#txt').bind('input propertychange', function() {
         $('#result').html(JSON.stringify(sentiment($('#txt').val()), undefined, 2));
@@ -175,7 +175,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91393607-4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
 
     gtag('config', 'UA-91393607-4');
