@@ -52,6 +52,9 @@
       background-color: white;
     }
 
+    #sentiment-label {
+      margin: 10px;
+    }
 
   </style>
 
@@ -73,8 +76,26 @@
         <a class="navbar-brand" href="#">AFINN Sentiment Analysis</a>
       </div>
       <div class="navbar-collapse collapse">
+
         <ul class="nav navbar-nav">
           <li><a href="http://www2.imm.dtu.dk/pubdb/views/edoc_download.php/6006/pdf/imm6006.pdf" target="_blank">AFINN: Evaluation of a word list for sentiment analysis in microblogs</a></li>
+
+          <li class="dropdown">
+
+            <div class="navbar-form">
+              <div class="btn-group">
+
+                <button class="btn btn-default dropdown-toggle" type="button" id="languageSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  English
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="languageSelector" href="#">English</span></a></li>
+                  <li><a class="languageSelector" href="#">Danish</span></a></li>
+
+                </ul>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -88,20 +109,9 @@
         or averseness "bad"-ness of an event, object, or situation. The term also characterizes and categorizes specific emotions'>valence</a>
         with an integer between minus five (negative) and plus five (positive). This implementation uses <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN-en-165</a></p>
 
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="languageSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          English
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="languageSelector">
-          <li><a class="languageSelector" href="#">English</a></li>
-          <li><a class="languageSelector" href="#">Danish</a></li>
-        </ul>
-      </div>
-
       <h3>Enter some text below for real-time (in-browser) sentiment analysis:</h3>
       <textarea id="txt"></textarea>
-      <h3>Verdict:</h3>
+      <h3>Verdict:<span id='sentiment-label'></span></h3>
       <pre id="result"></pre>
     </div>
   </div>
@@ -151,7 +161,15 @@
 
       $('#txt').focus();
       $('#txt').bind('input propertychange', function() {
-        $('#result').html(JSON.stringify(sentiment($('#txt').val()), undefined, 2));
+        var sentiment_result = sentiment($('#txt').val())
+        $('#result').html(JSON.stringify(sentiment_result, undefined, 2));
+        if (sentiment_result.verdict == 'POSITIVE') {
+          $('#result').css('background-color', 'green').css('color', 'white');
+        } else if (sentiment_result.verdict == 'NEGATIVE') {
+          $('#result').css('background-color', 'red').css('color', 'white');
+        } else {
+          $('#result').css('background-color', 'white').css('color', 'black');
+        }
       });
     });
   </script>
