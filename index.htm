@@ -52,10 +52,6 @@
       background-color: white;
     }
 
-    #sentiment-label {
-      margin: 10px;
-    }
-
   </style>
 
   <title>AFINN Sentiment Analysis</title>
@@ -111,12 +107,16 @@
 
       <h3>Enter some text below for real-time (in-browser) sentiment analysis:</h3>
       <textarea id="txt"></textarea>
-      <h3>Verdict:<span id='sentiment-label'></span></h3>
+      <h3>Verdict:</h3>
       <pre id="result"></pre>
     </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <!-- English words -->
@@ -162,14 +162,7 @@
       $('#txt').focus();
       $('#txt').bind('input propertychange', function() {
         var sentiment_result = sentiment($('#txt').val())
-        $('#result').html(JSON.stringify(sentiment_result, undefined, 2));
-        if (sentiment_result.verdict == 'POSITIVE') {
-          $('#result').css('background-color', 'green').css('color', 'white');
-        } else if (sentiment_result.verdict == 'NEGATIVE') {
-          $('#result').css('background-color', 'red').css('color', 'white');
-        } else {
-          $('#result').css('background-color', 'white').css('color', 'black');
-        }
+        $('#result').text(JSON.stringify(sentiment_result, undefined, 2));
       });
     });
   </script>
