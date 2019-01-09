@@ -2,7 +2,7 @@ function tokenize(input) {
   // convert negative contractions into negate_<word>
   return $.map(input.replace('.', '')
     .replace('/ {2,}/', ' ')
-    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+    .replace(/[.,\/#!$%\^&\*;:{}=_`~()]/g, '')
     .toLowerCase()
     .replace(/\w+['’]t\s+(a\s+)?(.*?)/g, 'negate_$2')
     .split(' '), $.trim);
