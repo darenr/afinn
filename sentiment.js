@@ -1,8 +1,9 @@
 function tokenize(input) {
-  return $.map(input.replace(/ {2,}/g, ' ')
+  return input.replace(/ {2,}/g, ' ')
     .replace(/[.,\/#!$%\^&\*;:{}=_`~()]/g, '')
     .toLowerCase()
-    .split(' '), $.trim);
+    .split(' ')
+    .map(function(s) { return s.trim(); });
 }
 
 function sentiment(phrase) {
