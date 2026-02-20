@@ -9,7 +9,8 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="AFINN Sentiment Analysis" />
-  <meta property="og:description" content="Javascript sentiment analysis using a lexicon of words and their sentiment valence called AFINN" />
+  <meta property="og:description"
+    content="Javascript sentiment analysis using a lexicon of words and their sentiment valence called AFINN" />
   <meta property="og:url" content="https://darenr.github.io/afinn/" />
   <meta property="og:image" content="https://darenr.github.io/afinn/afinn-app-screenshot.png" />
   <meta property="og:site_name" content="github - daren race - afinn" />
@@ -21,21 +22,21 @@
   <meta property="article:modified_time" content="2018-10-20T14:49:37+00:00" />
   <meta property="og:updated_time" content="2018-11-02T14:49:37+00:00" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:description" content="Javascript sentiment analysis using a lexicon of words and their sentiment valence called AFINN" />
+  <meta name="twitter:description"
+    content="Javascript sentiment analysis using a lexicon of words and their sentiment valence called AFINN" />
   <meta name="twitter:title" content="AFINN Sentiment Analysis" />
   <meta name="twitter:image" content="https://darenr.github.io/afinn/afinn-app-screenshot.png" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/darkly/bootstrap.min.css">
 
   <style>
-
     body {
-      padding-top: 70px;
+      padding-top: 100px;
       padding-bottom: 30px;
     }
 
     .tooltip-inner {
-        text-align: left;
+      text-align: left;
     }
 
     textarea {
@@ -60,7 +61,6 @@
     h3 {
       margin-top: 30px;
     }
-
   </style>
 
   <title>AFINN Sentiment Analysis</title>
@@ -72,37 +72,43 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">AFINN Sentiment Analysis</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="http://www2.imm.dtu.dk/pubdb/views/edoc_download.php/6006/pdf/imm6006.pdf" target="_blank">AFINN: Evaluation of a word list for sentiment analysis in microblogs</a>
+            <a class="nav-link" href="http://www2.imm.dtu.dk/pubdb/views/edoc_download.php/6006/pdf/imm6006.pdf"
+              target="_blank">AFINN: Evaluation of a word list for sentiment analysis in microblogs</a>
           </li>
         </ul>
         <div class="d-flex">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="languageSelector" data-bs-toggle="dropdown" aria-expanded="false">
-                English
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="languageSelector">
-                <li><a class="dropdown-item languageSelector" href="#">English</a></li>
-                <li><a class="dropdown-item languageSelector" href="#">Danish</a></li>
-              </ul>
-            </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="languageSelector"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              English
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="languageSelector">
+              <li><a class="dropdown-item languageSelector" href="#">English</a></li>
+              <li><a class="dropdown-item languageSelector" href="#">Danish</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </nav>
 
+
   <div class="container theme-showcase" role="main">
 
     <div class="p-5 mb-4 bg-secondary rounded-3">
-      <p>AFINN is a list of words rated for <a href="#" data-bs-toggle="tooltip" title='Valence, as used in psychology, especially in discussing emotions, means the intrinsic attractiveness "good"-ness
+      <p>AFINN is a list of words rated for <a href="#" data-bs-toggle="tooltip"
+          title='Valence, as used in psychology, especially in discussing emotions, means the intrinsic attractiveness "good"-ness
         or averseness "bad"-ness of an event, object, or situation. The term also characterizes and categorizes specific emotions'>valence</a>
-        with an integer between minus five (negative) and plus five (positive). This implementation uses <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN-en-165</a></p>
+        with an integer between minus five (negative) and plus five (positive). This implementation uses <a
+          href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN-en-165</a></p>
 
       <h3>Enter text for real-time (in-browser) sentiment analysis:</h3>
       <textarea id="txt" class="form-control"></textarea>
@@ -147,9 +153,9 @@
       }
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
-      $(".languageSelector").on("click", function(e) {
+      $(".languageSelector").on("click", function (e) {
         e.preventDefault();
         setLanguage($(this).text());
       });
@@ -159,7 +165,7 @@
       });
 
       $('#txt').focus();
-      $('#txt').bind('input propertychange', function() {
+      $('#txt').bind('input propertychange', function () {
         var sentiment_result = sentiment($('#txt').val())
         $('#result').text(JSON.stringify(sentiment_result, undefined, 2));
       });
